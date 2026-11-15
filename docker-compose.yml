@@ -1,0 +1,56 @@
+# Starts the whole DocVerify AI system:  docker compose up --build
+# Default values work out of the box. To change them, copy .env.example to .env.
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-docverify}
+      POSTGRES_USER: ${POSTGRES_USER:-docverify}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-docverify}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-docverify} -d ${POSTGRES_DB:-docverify}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # vector database for the RAG pipeline (used from Phase 3 on)
+  vectordb:
+    image: qdrant/qdrant:v1.12.4
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-docverify}:${POSTGRES_PASSWORD:-docverify}@db:5432/${POSTGRES_DB:-docverify}
+      QDRANT_URL: http://vectordb:6333
+      SECRET_KEY: ${SECRET_KEY:-dev-secret-change-me}
+      UPLOAD_DIR: /data/uploads
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@example.com}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-Admin12345}
+      REVIEWER_EMAIL: ${REVIEWER_EMAIL:-reviewer@example.com}
+      REVIEWER_PASSWORD: ${REVIEWER_PASSWORD:-Review12345}
+    volumes:
+      - uploads:/data/uploads
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      vectordb:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:
+  qdrant_data:
+  uploads:
