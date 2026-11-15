@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app import models  # noqa: F401  (makes sure all tables are registered)
 from app.config import get_settings
 from app.database import Base, SessionLocal, engine
-from app.routers import applications, auth, documents, health
+from app.routers import admin, applications, auth, documents, health, review
 from app.seed import seed
 
 
@@ -34,3 +34,5 @@ app.include_router(health.router)
 app.include_router(auth.router)
 app.include_router(applications.router)
 app.include_router(documents.router)
+app.include_router(review.router)
+app.include_router(admin.router)
