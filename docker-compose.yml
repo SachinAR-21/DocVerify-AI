@@ -35,6 +35,7 @@ services:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-Admin12345}
       REVIEWER_EMAIL: ${REVIEWER_EMAIL:-reviewer@example.com}
       REVIEWER_PASSWORD: ${REVIEWER_PASSWORD:-Review12345}
+      CORS_ORIGINS: http://localhost:8080
     volumes:
       - uploads:/data/uploads
     ports:
@@ -49,6 +50,13 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:
