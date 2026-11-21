@@ -1,0 +1,352 @@
+:root {
+  --primary: #1f5fa8;
+  --primary-dark: #174a83;
+  --text: #1d2733;
+  --muted: #667085;
+  --border: #d7dde5;
+  --bg: #f4f6f9;
+  --card: #ffffff;
+  --red: #b42318;
+  --green: #067647;
+  --orange: #b54708;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+h2 {
+  font-size: 1.15rem;
+  margin-top: 1.6rem;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+a {
+  color: var(--primary);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 3rem;
+}
+
+/* ---------- top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.logo span,
+.auth-card h1 span {
+  color: var(--primary);
+}
+
+.topbar nav {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+}
+
+.topbar nav a {
+  text-decoration: none;
+  color: var(--muted);
+  padding: 0.3rem 0;
+}
+
+.topbar nav a.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.user {
+  font-size: 0.9rem;
+}
+
+.user button {
+  margin-left: 0.8rem;
+}
+
+/* ---------- cards, forms ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  display: inline;
+  width: auto;
+}
+
+label.checkbox,
+label.radio {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--primary-dark);
+}
+
+button:disabled {
+  background: #9aa8b8;
+  cursor: not-allowed;
+}
+
+button.link {
+  background: none;
+  color: var(--primary);
+  padding: 0;
+  text-decoration: underline;
+}
+
+button.link.danger {
+  color: var(--red);
+}
+
+.inline-form,
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.8rem;
+}
+
+.inline-form label,
+.filters label {
+  margin: 0;
+  flex: 1;
+  min-width: 160px;
+}
+
+.inline-form input,
+.inline-form select {
+  flex: 1;
+  min-width: 140px;
+  width: auto;
+}
+
+/* ---------- login ---------- */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-card button[type='submit'] {
+  width: 100%;
+}
+
+/* ---------- tables ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.92rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: #eef2f7;
+  font-weight: 600;
+}
+
+tr.inactive td {
+  color: var(--muted);
+}
+
+dl {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0.4rem;
+  margin: 0;
+}
+
+dt {
+  color: var(--muted);
+}
+
+dd {
+  margin: 0;
+}
+
+/* ---------- messages ---------- */
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.82rem;
+}
+
+.error {
+  color: var(--red);
+}
+
+.success {
+  color: var(--green);
+}
+
+.warning {
+  color: var(--orange);
+}
+
+.note-request_documents,
+.note-reject {
+  border-left: 4px solid var(--orange);
+}
+
+.note-accept {
+  border-left: 4px solid var(--green);
+}
+
+.history li {
+  margin-bottom: 0.6rem;
+}
+
+/* ---------- status badges ---------- */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: #e4e7ec;
+  color: #344054;
+}
+
+.badge-submitted,
+.badge-in_review {
+  background: #d1e9ff;
+  color: #175cd3;
+}
+
+.badge-needs_documents,
+.badge-needs_review {
+  background: #fef0c7;
+  color: var(--orange);
+}
+
+.badge-accepted,
+.badge-verified {
+  background: #d1fadf;
+  color: var(--green);
+}
+
+.badge-rejected {
+  background: #fee4e2;
+  color: var(--red);
+}
+
+/* ---------- admin tabs ---------- */
+.tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.tabs button {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.tabs button.active {
+  background: var(--primary);
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .topbar {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}
