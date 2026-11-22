@@ -1,22 +1,13 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { homePathFor, useAuth } from './auth'
 import Layout from './components/Layout'
+import AdminPage from './pages/AdminPage'
 import ApplicantDashboard from './pages/ApplicantDashboard'
 import ApplicationDetail from './pages/ApplicationDetail'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import ReviewDetail from './pages/ReviewDetail'
 import ReviewQueue from './pages/ReviewQueue'
-
-// placeholder until the page is built in the next pull request
-function ComingSoon({ title }) {
-  return (
-    <>
-      <h1>{title}</h1>
-      <p className="muted">This page is coming in the next sprint.</p>
-    </>
-  )
-}
 
 function Home() {
   const { user, loading } = useAuth()
@@ -42,7 +33,7 @@ export default function App() {
       </Route>
 
       <Route element={<Layout roles={['admin']} />}>
-        <Route path="/admin" element={<ComingSoon title="Administration" />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Route>
 
       <Route path="*" element={<Home />} />
