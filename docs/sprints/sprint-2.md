@@ -78,7 +78,7 @@ Not finished / moved to the next phases:
 
 ## Individual contribution log
 
-This is an individual project. I planned the sprints, selected the technologies, set up and operated the system with Docker, tested all features and managed the GitHub workflow (issues, pull requests, CI pipeline and project board). An AI assistant was used as a supporting tool during implementation and documentation. All results were reviewed and tested by me before being merged.
+This is an individual project. I planned the sprints, selected the technologies, set up and operated the system with Docker, tested all features and managed the GitHub workflow (issues, pull requests, CI pipeline and project board). An AI assistant was used as a supporting tool where I faced difficulties and documentation. All results were reviewed and tested by me before being merged.
 
 | Date | Work |
 |---|---|
