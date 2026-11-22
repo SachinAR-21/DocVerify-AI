@@ -5,6 +5,8 @@ import ApplicantDashboard from './pages/ApplicantDashboard'
 import ApplicationDetail from './pages/ApplicationDetail'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import ReviewDetail from './pages/ReviewDetail'
+import ReviewQueue from './pages/ReviewQueue'
 
 // placeholder until the page is built in the next pull request
 function ComingSoon({ title }) {
@@ -35,7 +37,8 @@ export default function App() {
       </Route>
 
       <Route element={<Layout roles={['reviewer', 'admin']} />}>
-        <Route path="/review" element={<ComingSoon title="Review queue" />} />
+        <Route path="/review" element={<ReviewQueue />} />
+        <Route path="/review/:id" element={<ReviewDetail />} />
       </Route>
 
       <Route element={<Layout roles={['admin']} />}>
